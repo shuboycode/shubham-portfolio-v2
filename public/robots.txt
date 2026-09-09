@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shubham-portfolio-renew.vercel.app/sitemap.xml
