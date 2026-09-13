@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import type { ReactNode, ElementType } from 'react';
 
+const MotionDiv = motion.div;
+
 interface FadeInProps {
   children: ReactNode;
   delay?: number;
@@ -22,8 +24,9 @@ const FadeIn = ({
   className,
   style,
 }: FadeInProps) => {
-  // motion.create() supports dynamic element types in framer-motion v12
-  const MotionComponent = motion.create(as);
+  // Keep the default motion component stable so parent state changes do not
+  // remount already-visible reveal animations.
+  const MotionComponent = as === 'div' ? MotionDiv : motion.create(as);
 
   return (
     <MotionComponent

@@ -17,7 +17,7 @@ interface Role {
 // recruiters scan for numbers before they read sentences.
 const ROLES: Role[] = [
   {
-    title: 'SDE 1 · Frontend / Full-Stack Engineer',
+    title: 'SDE 1 | Frontend Engineer',
     company: 'Softobiz',
     team: 'EasyWebinar & EasyCRM',
     location: 'Hyderabad, India',
@@ -39,7 +39,7 @@ const ROLES: Role[] = [
     tech: ['React', 'Next.js', 'TypeScript', 'NestJS', 'Prisma', 'PostgreSQL', 'PubNub', 'Storybook', 'AI APIs'],
   },
   {
-    title: 'UI/UX · Frontend Developer',
+    title: 'Frontend Developer',
     company: 'Softobiz',
     team: 'Design & Development',
     location: 'Mohali, India',

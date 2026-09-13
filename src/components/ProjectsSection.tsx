@@ -24,6 +24,7 @@ const PROJECTS: ProjectData[] = [
     meta: 'Current',
     tagline:
       'Multi-tenant marketing automation and CRM platform where plain-English requirements become runnable campaign workflows. Currently in UAT.',
+    liveUrl: 'https://test-v2.easywebinar.com/ecrm/blast',
     // Ordered so the differentiating tech lands in the visible first five;
     // the collapsed row truncates, and table-stakes tooling can wait.
     stack: ['React', 'TypeScript', 'NestJS', 'PostgreSQL', 'AI APIs', 'Next.js', 'Prisma', 'Node.js', 'Tailwind'],
@@ -40,7 +41,7 @@ const PROJECTS: ProjectData[] = [
       'Implemented authenticated EasyWebinar ↔ EasyCRM communication, propagating tenant and company context for secure cross-product operations.',
       'Hardened event processing against idempotency failures, duplicate email sends and timeline inconsistency.',
     ],
-    images: [],
+    images: ['easycrm.png'],
   },
   {
     number: '02',
@@ -62,7 +63,7 @@ const PROJECTS: ProjectData[] = [
       'Optimized video streaming performance and ran user research that lifted engagement 20%.',
       'Built the AI automation module spanning multiple vertical products on the platform.',
     ],
-    images: [],
+    images: ['/easywebinar-platform-app.png'],
   },
   {
     number: '03',
@@ -82,7 +83,7 @@ const PROJECTS: ProjectData[] = [
       'Frontend engineering on the AI product line alongside the core webinar platform.',
       'The product generates the full funnel from a single idea: script, landing pages, email sequences and the webinar itself.',
     ],
-    images: [],
+    images: ['/easywebinar-ai.png'],
   },
   {
     number: '04',
@@ -358,7 +359,7 @@ const ProjectsSection = () => {
           className="hero-heading text-center font-black uppercase tracking-tight leading-none mb-4"
           style={{ fontSize: 'clamp(2.5rem, 10vw, 130px)' }}
         >
-          Projects
+          Selected Work
         </h2>
       </FadeIn>
 
@@ -367,7 +368,7 @@ const ProjectsSection = () => {
           className="text-center font-light uppercase tracking-widest text-[#D7E2EA]/50 mb-14 sm:mb-20"
           style={{ fontSize: 'clamp(0.75rem, 1.3vw, 1rem)' }}
         >
-          Selected work · Platforms, real-time systems &amp; interfaces
+          Production systems, product experiences &amp; engineering work
         </p>
       </FadeIn>
 
@@ -376,7 +377,7 @@ const ProjectsSection = () => {
         <FadeIn y={20}>
           <div className="flex items-baseline justify-between pb-5">
             <span className="font-light uppercase tracking-[0.28em] text-[#D7E2EA]/35 text-[10px]">
-              Selected work
+              Featured projects
             </span>
             <span className="font-light uppercase tracking-[0.28em] text-[#D7E2EA]/35 text-[10px]">
               {PROJECTS.length} projects

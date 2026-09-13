@@ -58,7 +58,7 @@ const ContactSection = () => {
           className="hero-heading text-center font-black uppercase tracking-tight leading-none mb-4"
           style={{ fontSize: 'clamp(2.5rem, 10vw, 130px)' }}
         >
-          Get in touch
+          Let's build something
         </h2>
       </FadeIn>
 
@@ -67,7 +67,7 @@ const ContactSection = () => {
           className="text-center font-light uppercase tracking-widest text-[#D7E2EA]/60 mb-12 sm:mb-16 md:mb-20"
           style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.1rem)' }}
         >
-          Pick whichever channel suits you
+          Open to interesting frontend, full-stack and product engineering opportunities
         </p>
       </FadeIn>
 

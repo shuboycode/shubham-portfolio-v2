@@ -1,12 +1,52 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion, useSpring } from 'framer-motion';
 import type { MotionValue } from 'framer-motion';
+import { Boxes, Database, Gauge, Palette, Radio, UsersRound } from 'lucide-react';
 import FadeIn from './FadeIn';
 import ContactButton from './ContactButton';
 import AnimatedText from './AnimatedText';
 
 const ABOUT_TEXT =
-  "I'm Shubham Kumar, a frontend engineer based in India, building for international product teams. Over 5+ years I've shipped SaaS platforms that stay fast under load — at EasyWebinar, a US webinar product, the real-time systems holding 10,000+ concurrent users and the performance work that made pages load 40% faster. On EasyCRM I work across the stack, React through NestJS and PostgreSQL, shipping AI that turns plain English into runnable marketing workflows.";
+  "I'm an SDE 1 and Frontend Engineer with 5+ years of experience building production web applications with React, Next.js and TypeScript. I specialize in scalable UI architecture, performance optimization, real-time experiences and design-driven product development.";
+
+const HOW_I_BUILD = [
+  {
+    title: 'Scalable Frontends',
+    description: 'React, Next.js and TypeScript applications built with reusable component architecture.',
+    tags: ['React', 'Next.js', 'TypeScript'],
+    icon: Boxes,
+  },
+  {
+    title: 'Performance Engineering',
+    description: 'Code splitting, lazy loading, caching and rendering strategy for better Core Web Vitals.',
+    tags: ['Lighthouse', 'SSR', 'Caching'],
+    icon: Gauge,
+  },
+  {
+    title: 'Real-Time Systems',
+    description: 'Interactive product experiences built for live collaboration and reliable event-driven flows.',
+    tags: ['PubNub', 'WebSockets', 'Realtime'],
+    icon: Radio,
+  },
+  {
+    title: 'Backend & Data',
+    description: 'API-driven product architecture with NestJS, PostgreSQL and Prisma for production systems.',
+    tags: ['NestJS', 'PostgreSQL', 'Prisma'],
+    icon: Database,
+  },
+  {
+    title: 'Product Development',
+    description: 'Turning product requirements and Figma designs into production-ready experiences.',
+    tags: ['Figma', 'Product', 'UI'],
+    icon: Palette,
+  },
+  {
+    title: 'Team Leadership',
+    description: 'Frontend delivery, technical decisions, mentoring and collaborative engineering execution.',
+    tags: ['Leadership', 'Reviews', 'Mentoring'],
+    icon: UsersRound,
+  },
+];
 
 /**
  * Decorative 3D renders, self-hosted in /public/decor.
@@ -111,63 +151,58 @@ const DecorLayer = ({ item, progress }: DecorLayerProps) => {
  */
 const SKILL_GROUPS: { label: string; items: { name: string; core?: boolean }[] }[] = [
   {
-    label: 'Languages',
+    label: 'Frontend Engineering',
     items: [
       { name: 'JavaScript', core: true },
       { name: 'TypeScript', core: true },
+      { name: 'React.js', core: true },
+      { name: 'Next.js', core: true },
       { name: 'HTML5', core: true },
       { name: 'CSS3', core: true },
       { name: 'SCSS' },
-      { name: 'jQuery' },
     ],
   },
   {
-    label: 'Frameworks',
+    label: 'State & Data',
     items: [
-      { name: 'React', core: true },
-      { name: 'Next.js — SSR / SSG / ISR', core: true },
       { name: 'Redux Toolkit', core: true },
-      { name: 'React Query', core: true },
-      { name: 'Vue.js' },
-      { name: 'Angular' },
+      { name: 'TanStack Query', core: true },
+      { name: 'REST APIs', core: true },
+      { name: 'JSON' },
+      { name: 'SSR / SSG / ISR', core: true },
     ],
   },
   {
-    label: 'UI & Design Systems',
+    label: 'UI & Design',
     items: [
       { name: 'Storybook', core: true },
       { name: 'Tailwind CSS', core: true },
       { name: 'Material UI' },
-      { name: 'Chakra UI' },
-      { name: 'Bootstrap' },
-      { name: 'GrapesJS' },
+      { name: 'Figma', core: true },
+      { name: 'Framer Motion' },
     ],
   },
   {
     label: 'Real-time & Backend',
     items: [
-      { name: 'Event-Driven Architecture', core: true },
       { name: 'WebSockets', core: true },
       { name: 'PubNub', core: true },
-      { name: 'REST APIs', core: true },
       { name: 'Node.js', core: true },
       { name: 'NestJS', core: true },
       { name: 'PostgreSQL', core: true },
       { name: 'Prisma', core: true },
       { name: 'Multi-tenant SaaS', core: true },
-      { name: 'MongoDB' },
+      { name: 'Event-Driven Architecture', core: true },
     ],
   },
   {
-    label: 'Cloud & DevOps',
+    label: 'Cloud & Tools',
     items: [
-      // Shown broad by choice. Backed by hands-on work with S3, EC2, Lambda,
-      // CloudFront and Route 53 — enough to answer "which services?" in a screen.
       { name: 'AWS', core: true },
       { name: 'Vercel', core: true },
+      { name: 'Git / GitHub', core: true },
       { name: 'CI/CD', core: true },
-      { name: 'Azure DevOps' },
-      { name: 'Git / GitHub' },
+      { name: 'WordPress' },
     ],
   },
   {
@@ -175,24 +210,30 @@ const SKILL_GROUPS: { label: string; items: { name: string; core?: boolean }[] }
     items: [
       { name: 'Core Web Vitals', core: true },
       { name: 'Lighthouse', core: true },
-      { name: 'SSR / SSG / ISR', core: true },
-      { name: 'Code splitting' },
-      { name: 'GTmetrix' },
-      { name: 'Contentful' },
+      { name: 'Code splitting', core: true },
+      { name: 'SEO', core: true },
+      { name: 'Responsive Design', core: true },
     ],
   },
   {
-    label: 'AI & Design',
+    label: 'AI & Product',
     items: [
       { name: 'AI API Integration', core: true },
       { name: 'Prompt Engineering', core: true },
-      { name: 'Figma', core: true },
-      { name: 'Framer Motion' },
-      { name: 'GSAP' },
-      { name: 'WCAG' },
-      { name: 'Cursor' },
+      { name: 'Frontend Architecture', core: true },
+      { name: 'Product Development', core: true },
+      { name: 'Team Leadership', core: true },
     ],
   },
+];
+
+const CAPABILITIES = [
+  'Frontend Architecture',
+  'Performance Engineering',
+  'Real-Time Applications',
+  'Full-Stack Development',
+  'Team Leadership',
+  'Product Development',
 ];
 
 const AboutSection = () => {
@@ -234,25 +275,125 @@ const AboutSection = () => {
             style={{ fontSize: 'clamp(1rem, 2vw, 1.3rem)' }}
           />
 
+          <FadeIn delay={0.15} className="w-full max-w-5xl">
+            <div className="hidden flex-col items-center gap-4 md:flex">
+              <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#D7E2EA]/45">
+                How I build
+              </p>
+              <div className="grid w-full gap-3 md:grid-cols-2 xl:grid-cols-3">
+                {HOW_I_BUILD.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-[18px] border border-[#D7E2EA]/10 bg-[#141418]/60 px-3.5 py-3 text-left transition-colors duration-300 hover:border-[#D7E2EA]/20"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <h3 className="font-medium text-[#D7E2EA] text-sm sm:text-base">{item.title}</h3>
+                      <span className="text-[9px] uppercase tracking-[0.18em] text-[#D7E2EA]/45">{item.tags[0]}</span>
+                    </div>
+                    <p className="mt-2 font-light leading-relaxed text-[#D7E2EA]/65 text-xs sm:text-[0.8rem]">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.15} className="w-full max-w-md md:hidden">
+            <div className="flex flex-col gap-5 text-left">
+              <div>
+                <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#D7E2EA]/45">
+                  Engineering capabilities
+                </p>
+                <p className="mt-3 max-w-sm font-light leading-relaxed text-[#D7E2EA]/65 text-sm">
+                  I design and build scalable, high-performance web applications with a focus on clean architecture, real-world impact, and great user experiences.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                {HOW_I_BUILD.map((item, index) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <article
+                      key={item.title}
+                      className="group relative overflow-hidden rounded-2xl border border-[#D7E2EA]/10 bg-[#111217]/90 px-4 py-4 transition-colors duration-300 hover:border-[#D7E2EA]/25"
+                    >
+                      <span className="absolute left-0 top-0 h-full w-px bg-[#D7E2EA]/20 transition-colors duration-300 group-hover:bg-[#D7E2EA]/70" />
+                      <div className="flex items-start gap-3.5">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#D7E2EA]/10 bg-[#D7E2EA]/[0.04] text-[#D7E2EA]/80">
+                          <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="flex items-baseline gap-2.5">
+                              <span className="text-[9px] font-medium tracking-[0.16em] text-[#D7E2EA]/35">
+                                {String(index + 1).padStart(2, '0')}
+                              </span>
+                              <h3 className="font-medium leading-tight text-[#D7E2EA] text-sm">
+                                {item.title}
+                              </h3>
+                            </div>
+                          </div>
+                          <p className="mt-1.5 font-light leading-relaxed text-[#D7E2EA]/55 text-[11px]">
+                            {item.description}
+                          </p>
+                          <div className="mt-2.5 flex flex-wrap gap-1.5">
+                            {item.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="rounded-full border border-[#D7E2EA]/10 px-2 py-1 text-[9px] text-[#D7E2EA]/55"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.18} className="w-full max-w-4xl">
+            <div className="hidden flex-col items-center gap-4 md:flex">
+              <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#D7E2EA]/45">
+                Engineering capabilities
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-2.5">
+                {CAPABILITIES.map((capability) => (
+                  <span
+                    key={capability}
+                    className="rounded-full border border-[#D7E2EA]/20 bg-[#D7E2EA]/[0.04] px-3.5 py-2 text-sm text-[#D7E2EA]/75"
+                  >
+                    {capability}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
           {/* Skills */}
-          <FadeIn delay={0.15} className="w-full max-w-3xl">
-            <div className="flex flex-col gap-5 sm:gap-6">
+          <FadeIn delay={0.22} className="w-full max-w-3xl">
+            <div className="mx-auto flex w-full max-w-md flex-col gap-5 sm:max-w-3xl sm:gap-6">
               {SKILL_GROUPS.map((group) => (
                 <div
                   key={group.label}
-                  className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-5 text-left"
+                  className="flex flex-col items-start gap-2.5 text-left sm:flex-row sm:items-baseline sm:gap-5"
                 >
-                  <span className="text-[11px] uppercase tracking-widest text-[#D7E2EA]/35 sm:w-40 sm:shrink-0 sm:text-right">
+                  <span className="w-full text-[10px] uppercase tracking-[0.2em] text-[#D7E2EA]/35 sm:w-40 sm:shrink-0 sm:text-right sm:text-[11px] sm:tracking-widest">
                     {group.label}
                   </span>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex w-full flex-wrap justify-start gap-1.5 sm:gap-2">
                     {group.items.map((item) => (
                       <span
                         key={item.name}
                         className={
                           item.core
-                            ? 'rounded-full border border-[#D7E2EA]/30 bg-[#D7E2EA]/[0.07] px-3 py-1 text-sm text-[#D7E2EA] transition-colors hover:border-[#D7E2EA]/60'
-                            : 'rounded-full border border-[#D7E2EA]/10 px-3 py-1 text-sm text-[#D7E2EA]/50 transition-colors hover:border-[#D7E2EA]/30 hover:text-[#D7E2EA]/80'
+                            ? 'rounded-full border border-[#D7E2EA]/30 bg-[#D7E2EA]/[0.07] px-2.5 py-1 text-xs text-[#D7E2EA] transition-colors hover:border-[#D7E2EA]/60 sm:px-3 sm:text-sm'
+                            : 'rounded-full border border-[#D7E2EA]/10 px-2.5 py-1 text-xs text-[#D7E2EA]/50 transition-colors hover:border-[#D7E2EA]/30 hover:text-[#D7E2EA]/80 sm:px-3 sm:text-sm'
                         }
                       >
                         {item.name}

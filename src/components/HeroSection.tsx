@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
+import { ArrowUpRight, Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 import FadeIn from './FadeIn';
 
+const EMAIL_ADDRESS = 'kumarshubham121998@gmail.com';
+
 const NAV_LINKS = [
-  { label: 'About', href: '#about' },
+  { label: 'Home', href: '#home' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Skills', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -13,6 +17,7 @@ const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [showSoundHint, setShowSoundHint] = useState(true);
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setShowSoundHint(false), 5000);
@@ -49,7 +54,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative h-[100dvh] min-h-[620px] w-full overflow-hidden bg-black">
+    <section id="home" ref={sectionRef} className="relative h-[100dvh] min-h-[620px] w-full overflow-hidden bg-black">
       {/* Video background */}
       <video
         ref={videoRef}
@@ -66,7 +71,7 @@ const HeroSection = () => {
 
       {/* Legibility scrim: strong on the left where the copy sits, clearing to
           the right so the subject stays visible. */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/55 to-black/15" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#03060b]/95 via-[#07111c]/70 to-[#07111c]/10" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/85" />
       {/* Soft vignette */}
       <div
@@ -77,8 +82,8 @@ const HeroSection = () => {
       <div className="relative z-10 flex h-full flex-col">
         {/* ── Nav ─────────────────────────────────────────── */}
         <FadeIn delay={0} y={-20}>
-          <nav className="flex items-center justify-between gap-6 px-6 pt-7 md:px-12 md:pt-9">
-            <ul className="flex items-center gap-5 sm:gap-8 md:gap-11">
+          <nav className="relative flex items-center justify-between gap-6 px-6 pt-7 md:px-12 md:pt-9">
+            <ul className="hidden items-center gap-5 sm:gap-8 md:flex md:gap-11">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   <a
@@ -91,6 +96,17 @@ const HeroSection = () => {
                 </li>
               ))}
             </ul>
+
+            <button
+              type="button"
+              onClick={() => setNavOpen((open) => !open)}
+              aria-expanded={navOpen}
+              aria-controls="mobile-navigation"
+              className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.22em] text-white/75 transition-colors hover:text-white md:hidden"
+            >
+              {navOpen ? <X size={16} strokeWidth={1.8} aria-hidden="true" /> : <Menu size={16} strokeWidth={1.8} aria-hidden="true" />}
+              Menu
+            </button>
 
             <a
               href="/resume.pdf"
@@ -106,6 +122,28 @@ const HeroSection = () => {
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
               </svg>
             </a>
+
+            {navOpen && (
+              <div
+                id="mobile-navigation"
+                className="absolute left-6 right-6 top-full z-30 mt-4 rounded-2xl border border-white/15 bg-[#080b10]/95 p-3 shadow-2xl backdrop-blur-xl md:hidden"
+              >
+                <ul className="grid gap-1">
+                  {NAV_LINKS.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        onClick={() => setNavOpen(false)}
+                        className="flex items-center justify-between rounded-xl px-4 py-3 text-[11px] font-medium uppercase tracking-[0.22em] text-white/70 transition-colors hover:bg-white/[0.08] hover:text-white"
+                      >
+                        {link.label}
+                        <ArrowUpRight size={14} strokeWidth={1.7} aria-hidden="true" className="text-white/35" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </nav>
         </FadeIn>
 
@@ -117,7 +155,7 @@ const HeroSection = () => {
               <div className="flex items-center gap-3.5">
                 <span aria-hidden="true" className="h-px w-8 bg-white/40 sm:w-12" />
                 <p className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.3em] text-white/65">
-                  SDE 1 · Frontend Engineer
+                  SDE 1 | Frontend Engineer
                 </p>
               </div>
             </FadeIn>
@@ -134,14 +172,9 @@ const HeroSection = () => {
               </h1>
             </FadeIn>
 
-            {/* Subhead */}
-            <FadeIn delay={0.7} y={20}>
-              <p className="mt-7 max-w-[31rem] text-[0.95rem] sm:text-base md:text-[1.05rem] font-light leading-[1.7] text-white/70">
-                <span className="font-medium text-white">5+ years</span> building SaaS products
-                for <span className="font-medium text-white">US-based teams</span> — real-time
-                systems holding{' '}
-                <span className="font-medium text-white">10,000+ concurrent users</span>, and AI
-                that turns plain English into working automation.
+            <FadeIn delay={0.82} y={20}>
+              <p className="mt-4 max-w-[31rem] text-[0.8rem] sm:text-[0.92rem] font-medium uppercase tracking-[0.18em] text-white/55">
+                5+ years of experience shipping production SaaS, real-time systems & AI-powered workflows.
               </p>
             </FadeIn>
 
@@ -160,16 +193,50 @@ const HeroSection = () => {
                     <path d="M5 12h14M13 6l6 6-6 6" />
                   </svg>
                 </a>
+
                 <a
-                  href="mailto:kumarshubham121998@gmail.com"
-                  className="inline-flex items-center rounded-full border border-white/25 px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/60 hover:bg-white/10"
+                  href="https://github.com/shuboycode"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  title="GitHub"
+                  className="inline-flex h-10 w-10 items-center justify-center text-white/70 transition-colors duration-300 hover:text-white"
                 >
-                  Email me
+                  <Github size={20} strokeWidth={1.8} aria-hidden="true" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/shubh-kumar-dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  title="LinkedIn"
+                  className="inline-flex h-10 w-10 items-center justify-center text-white/70 transition-colors duration-300 hover:text-white"
+                >
+                  <Linkedin size={20} strokeWidth={1.8} aria-hidden="true" />
+                </a>
+                <a
+                  href={`mailto:${EMAIL_ADDRESS}`}
+                  aria-label="Email Shubham"
+                  title="Email me"
+                  className="inline-flex h-10 w-10 items-center justify-center text-white/70 transition-colors duration-300 hover:text-white"
+                >
+                  <Mail size={20} strokeWidth={1.8} aria-hidden="true" />
                 </a>
               </div>
             </FadeIn>
           </div>
         </div>
+
+        <a
+          href={`mailto:${EMAIL_ADDRESS}`}
+          aria-label={`Email ${EMAIL_ADDRESS}`}
+          className="group absolute right-4 top-1/2 hidden -translate-y-1/2 items-center gap-3 md:flex"
+        >
+          <span className="h-14 w-px bg-white/20 transition-colors duration-300 group-hover:bg-white/60" />
+          <span className="[writing-mode:vertical-rl] rotate-180 text-[10px] font-medium tracking-[0.2em] text-white/30 opacity-70 transition-all duration-300 group-hover:text-white group-hover:opacity-100">
+            {EMAIL_ADDRESS}
+          </span>
+        </a>
 
         {/* ── Bottom bar ──────────────────────────────────── */}
         <FadeIn delay={1.1} y={20}>

@@ -20,10 +20,10 @@ interface Stat {
  * Both are stated in the Experience section, where they carry more weight.
  */
 const STATS: Stat[] = [
-  { value: 5.5, decimals: 1, suffix: 'yrs', label: 'Experience' },
+  { value: 5, suffix: '+', label: 'Years experience' },
+  { value: 40, suffix: '%', label: 'Faster initial load' },
+  { value: 4, suffix: '', label: 'Developers led' },
   { value: 100, suffix: 'K+', label: 'Users reached' },
-  { value: 10, suffix: 'K+', label: 'Concurrent live' },
-  { value: 40, suffix: '%', label: 'Faster loads' },
 ];
 
 const Counter = ({ value, decimals = 0 }: { value: number; decimals?: number }) => {
